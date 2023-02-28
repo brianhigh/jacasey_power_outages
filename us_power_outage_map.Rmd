@@ -80,10 +80,13 @@ shape <- shape %>% mutate(fips = paste0(STATEFP, COUNTYFP)) %>%
 # mypal <- colorNumeric(palette = "YlOrRd", domain = shape$Events,
 #                       na.color = na_col_hex)
 
-# Convert Events to a factor with 7 levels based on 7 quantiles
-event_levels <- 
-  round(quantile(shape$Events, c(0, .4, .5, .7, .8, .9, 1), na.rm = TRUE))
-names(event_levels) <- c('0', '1', '2', '3-4', '5', '6-8', '9-35')
+# Convert Events to a factor with quantile-based bins to make a palette
+event_probs <- c(0, .75, .90, .98, .999, 1)
+event_levels <- round(quantile(shape$Events, event_probs, na.rm = TRUE))
+df_labels <- tibble(x = lag(event_levels, n = 1) + 1, y = event_levels) %>%
+  mutate(x = ifelse(is.na(x), 0, x)) %>% 
+  mutate(label = ifelse(x == y, as.character(x), paste(x, y, sep = "-")))
+names(event_levels) <- df_labels$label
 shape$EventsFct <- cut(shape$Events, breaks = c(-1, event_levels), 
                        labels = names(event_levels), ordered_result = TRUE)
 
@@ -91,7 +94,7 @@ shape$EventsFct <- cut(shape$Events, breaks = c(-1, event_levels),
 #table(shape$Events, useNA = 'always')
 #table(shape$EventsFct, useNA = 'always')
 
-# Create a 7-color palette for filling counties
+# Create a color palette from a factor variable for filling counties
 mypal <- colorFactor(palette = "YlOrRd", domain = shape$EventsFct, 
                      na.color = na_col_hex)
 
