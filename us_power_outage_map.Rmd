@@ -118,9 +118,11 @@ bscols(
                     "<strong>", "County: ", "</strong>", County, "<br>",
                     "<strong>", "Events: ", "</strong>", Events, "<br>")) %>%
   # addLegend(na.label = "NA", position = "bottomleft", pal = mypal, 
-  #           values = ~ Events, title = "Events", opacity = 0.8),
+  #           values = ~ Events, title = "Annual average outages", 
+  #           opacity = 0.8),
   addLegend(na.label = "NA", position = "bottomleft", pal = mypal,
-            values = ~ EventsFct, title = "Events", opacity = 0.8),
+            values = ~ EventsFct, title = "Annual<br>average<br>outages", 
+            opacity = 0.8),
   widths = c(10)
 )
 ```
@@ -148,7 +150,8 @@ bscols(
 bscols(
   datatable(sd, 
             colnames = c("State" = "State", "County" = "County", 
-                         "# of Years of Data" = "Years", "Events" = "Events"),
+                         "# of Years of Data" = "Years", 
+                         "Annual average outages" = "Events"),
             extensions = "Scroller", style = "bootstrap", class = "stripe",
             width = "100%", height = "45%", rownames = FALSE,
             options = list(
