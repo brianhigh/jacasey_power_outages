@@ -19,8 +19,7 @@ options(repos = r)
 
 # Load packages, installing as needed
 if(!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
-pacman::p_load(here, readxl, readr, dplyr, tidyr, stringr, purrr, sf, tigris, 
-               downloader, crosstalk, DT, jsonlite, remotes)
+pacman::p_load(here, readr, dplyr, stringr, sf, tigris, crosstalk, DT, remotes)
 pacman::p_load_gh("deohs/folders")
 remotes::install_github("dmurdoch/leaflet", ref = "crosstalk4", quiet = TRUE)
 pacman::p_load_gh("dmurdoch/leaflet@crosstalk4")
