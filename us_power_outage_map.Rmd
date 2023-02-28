@@ -49,11 +49,11 @@ df_events <- read_csv(events_csv) %>%
 ```
 
 ```{r prepare_map_data}
-# Define the NA color used in the map
+# Define the NA color used in the map (for filling polygons with NA events)
 na_col_rgb <- list(r = '241', g = '240', b = '232')
 na_col_hex <- with(na_col_rgb, rgb(r, g, b, maxColorValue = 255))
 
-# Define the default color used in the map
+# Define the default color used in the map (for polygon borders)
 def_col_hex <- '#BDBDC3'
 
 # Get map county-level polygons
@@ -97,7 +97,7 @@ shape$EventsFct <- cut(shape$Events, breaks = c(-1, event_levels),
 mypal <- colorFactor(palette = "RdYlGn", domain = shape$EventsFct, 
                      na.color = na_col_hex, reverse = TRUE)
 
-# Wrap data frame in SharedData for Crosstalk
+# Wrap data frame in SharedData object for Crosstalk
 sd <- SharedData$new(shape)
 ```
 
@@ -122,7 +122,7 @@ bscols(
   addLegend(na.label = "NA", position = "bottomleft", pal = mypal,
             values = ~ EventsFct, title = "Annual<br>average<br>outages", 
             opacity = 0.8),
-  widths = c(10)
+  widths = c(10)                 # Maximum width of a bscols() row is 12
 )
 ```
 
