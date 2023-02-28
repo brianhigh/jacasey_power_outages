@@ -11,7 +11,7 @@ editor_options:
 knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 ```
 
-```{r load_packages}
+```{r load_packages, include = FALSE}
 # Set repository URL
 r <- getOption("repos")
 r["CRAN"] <- "https://cloud.r-project.org"
