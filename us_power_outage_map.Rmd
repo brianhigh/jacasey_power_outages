@@ -81,7 +81,7 @@ shape <- shape %>% mutate(fips = paste0(STATEFP, COUNTYFP)) %>%
 #                       na.color = na_col_hex)
 
 # Convert Events to a factor with quantile-based bins to make a palette
-event_probs <- c(0, 0.5, .75, .90, .98, .999, 1)
+event_probs <- c(0, 0.5, .75, .85, .90, .95, .98, .999, 1)
 event_levels <- round(quantile(shape$Events, event_probs, na.rm = TRUE))
 df_labels <- tibble(x = lag(event_levels, n = 1) + 1, y = event_levels) %>%
   mutate(x = ifelse(is.na(x), 0, x)) %>% 
