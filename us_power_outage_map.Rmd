@@ -94,12 +94,14 @@ shape$EventsFct <- cut(shape$Events, breaks = c(-1, event_levels),
 #table(shape$EventsFct, useNA = 'always')
 
 # Create a color palette from a factor variable for filling counties
-mypal <- colorFactor(palette = "RdYlGn", domain = shape$EventsFct, 
+mypal <- colorFactor(palette = "magma", domain = shape$EventsFct, 
                      na.color = na_col_hex, reverse = TRUE)
 
 # Wrap data frame in SharedData object for Crosstalk
 sd <- SharedData$new(shape)
 ```
+
+The power outage map displays annual average counts of outage events lasting 8+ hours at a county level across the US Users can identify areas that experience the greatest and least burden of 8+ hour outage exposure for years between 2018-2020. Data come from PowerOutage.US, which tracks customer outage experience. This interactive map is a supplement to Do et al 2023, Spatiotemporal distribution of power outages with climate events and social vulnerability in the USA. Please refer to Do et al 2023 for further details about materials and methods and the associated GitHub for the code. 
 
 ## US Counties
 
@@ -162,4 +164,11 @@ bscols(
 )
 ```
 
+## Methods and Citation
+For every county, we aggregated average counts of outages lasting at least 8 hours over the county’s total number of years with data. Briefly, we defined an 8+ hour outage to be whenever the customers without power in a given county was continuously equal to or above 0.01% of customers served. We chose 0.01% based on methods used in prior studies. More information can be found in the methods section of Do et al 2023.
+
+Citation for this map and related study:
+[[INSERT WHEN WE HAVE IT FROM NATURE]]
+
+For those interested in this project on power outages, we are open to collaborations and happy to discuss ways to move leverage this data to advance research. Please reach out to Dr. Joan Casey at jacasey@uw.edu for inquiries and questions.
 - Source code: https://github.com/brianhigh/jacasey_power_outages
