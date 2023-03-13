@@ -31,7 +31,8 @@ options(tigris_use_cache = TRUE, tigris_refresh = TRUE)
 
 ```{r read_config_file}
 # Read config file to get default folder paths
-folders <- get_folders()
+conf <- here::here('folders.yml')
+folders <- get_folders(conf)
 data_dir <- here::here(folders$data)
 ```
 
