@@ -19,8 +19,8 @@ options(repos = r)
 
 # Load packages, installing as needed
 if(!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
-pacman::p_load(here, readr, dplyr, stringr, sf, tigris, crosstalk, DT, remotes)
-pacman::p_load_gh("deohs/folders")
+pacman::p_load(here, folders, readr, dplyr, stringr, sf, tigris, crosstalk, DT, 
+               remotes)
 remotes::install_github("dmurdoch/leaflet", ref = "crosstalk4", quiet = TRUE)
 pacman::p_load_gh("dmurdoch/leaflet@crosstalk4")
 
@@ -30,21 +30,18 @@ options(tigris_use_cache = TRUE, tigris_refresh = TRUE)
 ```
 
 ```{r read_config_file}
-# Read config file to get default folder paths
-conf <- here::here('folders.yml')
-folders <- get_folders(conf)
-data_dir <- here::here(folders$data)
+# Read config file to get default folder paths, or create config file if missing
+conf_file <- here('conf', 'folders.yml')
+folders <- get_folders(conf_file)
 ```
 
 ```{r create_folders}
-# Create data folder, if missing
-if (!dir.exists(data_dir)) {
-  dir.create(data_dir, showWarnings = FALSE, recursive = TRUE)
-}
+# Create folders, if missing
+result <- create_folders(folders)
 ```
 
 ```{r get_outage_data}
-events_csv <- file.path(data_dir, "outage_data.csv")
+events_csv <- here(folders$data, "outage_data.csv")
 df_events <- read_csv(events_csv) %>% 
   mutate(fips = str_pad(fips, side = "left", width = 5, pad = "0"))
 ```
@@ -172,4 +169,10 @@ Citation for this map and related study:
 [[INSERT WHEN WE HAVE IT FROM NATURE]]
 
 For those interested in this project on power outages, we are open to collaborations and happy to discuss ways to move leverage this data to advance research. Please reach out to Dr. Joan Casey at jacasey@uw.edu for inquiries and questions.
+
 - Source code: https://github.com/brianhigh/jacasey_power_outages
+
+```{r}
+# Cleanup unused folders
+result <- cleanup_folders(folders, conf_file)
+```
