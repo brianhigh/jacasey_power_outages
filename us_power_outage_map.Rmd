@@ -172,7 +172,8 @@ bscols(
 For every county, we aggregated average counts of outages lasting at least 8 hours over the county’s total number of years with data. Briefly, we defined an 8+ hour outage to be whenever the customers without power in a given county was continuously equal to or above 0.01% of customers served. We chose 0.01% based on methods used in prior studies. More information can be found in the methods section of Do et al 2023.
 
 Citation for this map and related study:
-[[INSERT WHEN WE HAVE IT FROM NATURE]]
+Do, V., McBrien, H., Flores, N.M. et al. Spatiotemporal distribution of power outages with climate events and social vulnerability in the USA. Nat Commun 14, 2470 (2023). https://doi.org/10.1038/s41467-023-38084-6
+
 
 For those interested in this project on power outages, we are open to collaborations and happy to discuss ways to move leverage this data to advance research. Please reach out to Dr. Joan Casey at jacasey@uw.edu for inquiries and questions.
 
