@@ -1,0 +1,6 @@
+default:
+  code: code
+  data: data
+  doc: doc
+  figures: figures
+  results: results
