@@ -105,7 +105,7 @@ sd <- SharedData$new(shape)
 }
 ```
 
-The power outage map displays annual average counts of outage events lasting 8+ hours at a county level across the US Users can identify areas that experience the greatest and least burden of 8+ hour outage exposure for years between 2018-2020. Data come from PowerOutage.US, which tracks customer outage experience. This interactive map is a supplement to Do et al 2023, Spatiotemporal distribution of power outages with climate events and social vulnerability in the USA. Please refer to Do et al 2023 for further details about materials and methods and the associated GitHub for the code. 
+The power outage map displays annual average counts of outage events lasting 8+ hours at a county level across the US. Users can identify areas that experience the greatest and least burden of 8+ hour outage exposure for years between 2018-2020. Data come from PowerOutage.US, which tracks customer outage experience. This interactive map is a supplement to Do et al 2023, Spatiotemporal distribution of power outages with climate events and social vulnerability in the USA. Please refer to Do et al 2023 for further details about materials and methods and the associated GitHub for the code. 
 
 ## US Counties
 
