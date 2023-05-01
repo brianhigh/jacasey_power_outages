@@ -181,5 +181,5 @@ For those interested in this project on power outages, we are open to collaborat
 
 ```{r}
 # Cleanup unused folders
-result <- cleanup_folders(folders, conf_file)
+result <- cleanup_folders(folders, conf_file) 
 ```
